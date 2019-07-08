@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { navigate } from 'hookrouter';
 import {withRouter} from 'react-router-dom';
-import { TitleContent, Title, Input} from '../../styles';
-import { MainContainer, LogoContent, ProjectsContent, SearchContent, ProjectsList, ProjectItem } from './styles';
+import { TitleContent, Title, Input, Button} from '../../styles';
+import { MainContainer, LogoContent, ProjectsContent, SearchContent, NewProjectContent, ProjectsList, ProjectItem } from './styles';
 import api from '../../services/api';
+import EventEmitter from '../../services/emitter';
 
 function LateralMenu(props){
-    const [projects, setProjects] = useState([])
+    debugger
 
+    const [projects, setProjects] = useState([])
     useEffect(() => {
-        
+        debugger;
+        let response = {}
         async function fetchData(){
-            const response = await api.get('projects');
-            console.log(response);
-            setProjects(response.data.projects);
+            response = await api.get('projects');
+            setProjects(response.data.projects || []);
+            
         }
         
+        EventEmitter.subscribe('updateLateralManual', () => { fetchData(); })
+
         if(!projects.length){
             fetchData();
         }
@@ -30,9 +35,7 @@ function LateralMenu(props){
                 </Title>
             </LogoContent>
             <ProjectsContent>
-                <SearchContent>
-                   <Input type="text" placeholder="Buscar projeto"></Input>
-                </SearchContent>
+              
                 <TitleContent padding="5" align={"center"}>
                 <Title color={'black'} size={25} >
                     Projetos
@@ -43,13 +46,17 @@ function LateralMenu(props){
                     projects.map(project => {
                     return (
                         <ProjectItem key={project._id} onClick={()=> navigate(`/project/${project._id}`)}>
-                            <h2>{project.name}</h2>
+                            <Title>{project.name}</Title>
                         </ProjectItem>
-                    )
+                    ) ||  <div/>
                 })}    
                   
                 </ProjectsList>
+                <NewProjectContent>
+                    <Button onClick={()=> navigate('/project/new')}> + Novo projeto</Button>
+                </NewProjectContent>
             </ProjectsContent>
+         
         </MainContainer>
     );
 }

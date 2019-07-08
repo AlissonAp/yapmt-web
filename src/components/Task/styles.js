@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div`
-    display: flex;
-    max-width : 400px;
-    height : 100%;
+    width : 320px;
+    height: 75px;
     margin: 1%;
     flex-direction : column;
-    background-color: ${props => props.color ? props.color : '#6FCF97' };
+    background-color: ${props => props.color ? props.color : 'white' };
     padding: 10px;
     border-radius: 5px;
-    justify-content: space-between;
 `
 
 export const CenterContainer = styled.div`
@@ -23,6 +21,13 @@ export const CheckBox = styled.input`
     height: 25px;
     width: 25px;
 `
+export const LeftContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 5px;
+`
+
 export const FooterContainer = styled.div`
     display: flex;
     color: gray;

@@ -6,12 +6,14 @@ import LateralMenu from './components/LateralMenu';
 
 
 function App(props) {
+
+
   return (
     <MainContainer>
       <LateralMenu />
       <BrowserRouter>
         <PageContent>
-            <Routes />
+            <Routes/>
         </PageContent>
       </BrowserRouter>
     </MainContainer>

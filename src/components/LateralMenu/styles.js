@@ -25,6 +25,14 @@ export const ProjectsContent = styled.div`
     border-radius: 2px;
     background-color : #828282;
 `
+export const NewProjectContent = styled.div`
+    display: flex;
+    margin-top: 5%;
+    padding: 5%;
+    flex: 0.2;
+    flex-direction: column;
+`
+
 export const SearchContent = styled.div`
     display: flex;
     padding: 20px 5px 20px 5px;
@@ -32,8 +40,9 @@ export const SearchContent = styled.div`
 `
 export const ProjectsList = styled.div`
     display: flex;
+    overflow: auto;
+    flex: 1.2;
     margin-top: 5%;
-    flex-grow: 1;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
