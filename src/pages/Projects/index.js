@@ -1,3 +1,5 @@
+/* eslint no-use-before-define: 0 */ 
+
 import React, { Component } from 'react';
 import {MainContainer, Title, TitleContent } from '../../styles';
 

@@ -1,3 +1,5 @@
+/* eslint no-use-before-define: 0 */ 
+
 import React, { useState, useEffect } from 'react';
 import { TitleContent, Title, Button, Input } from '../../styles';
 import { MainContainer, CenterContainer, FooterContainer, LeftContainer, CheckBox } from './styles';
@@ -24,7 +26,7 @@ export default function Task(props) {
     function onChange(e) {
         debugger;
         let value = "";
-        e.target.value == 'on' && e.target.type == 'checkbox' ? value = e.target.checked : value = e.target.value
+        e.target.value === 'on' && e.target.type === 'checkbox' ? value = e.target.checked : value = e.target.value
 
         let currentTask = {
             ...task,
@@ -33,7 +35,7 @@ export default function Task(props) {
 
         setTask(currentTask)
 
-        if (e.target.type == 'checkbox' && props.type == 'readOnly') {
+        if (e.target.type === 'checkbox' && props.type === 'readOnly') {
             let currentTask = {
                 ...task,
                 closed: value,
@@ -102,7 +104,7 @@ export default function Task(props) {
     return (
 
         <MainContainer color={task.closed ? "#6FCF97" : "white"}>
-            {props.type == 'editable' ?
+            {props.type === 'editable' ?
                 <div>
                     <Input id="description" size="14" color="black" type="text" renderType={props.type} value={task.description} placeholder={'Descricao'} onChange={onChange} />
                     <Input id="owner" size={12} color="blue" type="text" renderType={props.type} value={task.owner} placeholder={'Proprietario'} onChange={onChange} />

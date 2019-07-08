@@ -1,4 +1,6 @@
-import React, {Suspense} from 'react';
+/* eslint no-use-before-define: 0 */ 
+
+import React from 'react';
 import { MainContainer, PageContent } from './styles';
 import { BrowserRouter } from 'react-router-dom'; 
 import Routes from './routes';

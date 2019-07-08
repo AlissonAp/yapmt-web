@@ -1,3 +1,5 @@
+/* eslint no-use-before-define: 0 */ 
+
 import React, { useState, useEffect} from 'react';
 import { MainContainer, Popup, PopupInner, TopButton} from './styles';
 import { Button } from '../../styles';

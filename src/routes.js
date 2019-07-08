@@ -1,6 +1,5 @@
-import React, { Suspense }from 'react';
+import React from 'react';
 import {useRoutes} from 'hookrouter';
-import NewProject from './pages/NewProject';
 import Projects from './pages/Projects';
 import ProjectDetails from './pages/ProjectDetails';
 

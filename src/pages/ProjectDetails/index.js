@@ -1,3 +1,5 @@
+/* eslint no-use-before-define: 0 */ 
+
 import React, { useState, useEffect} from "react";
 import { Title, Input, Button, TitleContent } from '../../styles';
 import { MainContainer, CardsContainer, HeaderContainer, AddNewTask, RightHeaderContainer} from "./styles";
@@ -17,6 +19,7 @@ export default function ProjectDetails(props){
     const [tasks, setTasks] = useState([]);
     const [isNewProject, setIsNewProject] = useState(false);
 
+  
     useEffect(() => {
       console.log("run use effect");
       async function fetchData(){
@@ -27,7 +30,7 @@ export default function ProjectDetails(props){
           checkProjectStatus(response.data.projects[0].tasks);
       }
 
-      if(props.id == 'new'){
+      if(props.id === 'new'){
         setIsNewProject(true);
       }else{
         setIsNewProject(false);
@@ -44,7 +47,7 @@ export default function ProjectDetails(props){
       debugger;
 
       const concluidas = responseTasks.filter(el => {
-        return el.closed == true;
+        return el.closed === true;
       }).length;
 
       const atrasadas = responseTasks.filter(el => {
@@ -70,7 +73,7 @@ export default function ProjectDetails(props){
           response = await api.post('projects', project);
         }
       
-        if(response.status == 201 || response.status == 200){
+        if(response.status === 201 || response.status === 200){
           EventEmitter.dispatch('updateLateralManual', {})
           navigate(`./${response.data.project._id}`)
         }else{
@@ -86,7 +89,7 @@ export default function ProjectDetails(props){
       //eslint-disable-next-line
       if(confirm("Tem certeza que deseja excluir este projeto?")){
         const response = await api.delete(`projects/${props.id}`)
-        if(response.status == 200){
+        if(response.status === 200){
           EventEmitter.dispatch('updateLateralManual', {});
           navigate('/');
         }else{
@@ -98,7 +101,7 @@ export default function ProjectDetails(props){
     async function changeTaskStatus(task){
       debugger;
       const response = await api.put(`projects/${props.id}/tasks/${task._id}`,task)
-      if(response.status == 200){
+      if(response.status === 200){
         setChangeView(true);
       }
     }
@@ -120,7 +123,7 @@ export default function ProjectDetails(props){
     function onChangeTask(id, type, value){
       const myTasks = tasks;
       const currentTask = myTasks.filter(task => { 
-        return task._id == id;
+        return task._id === id;
       })
     }
 

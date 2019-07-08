@@ -1,3 +1,5 @@
+/* eslint no-use-before-define: 0 */ 
+
 import React, { useState, useEffect } from 'react';
 import { navigate } from 'hookrouter';
 import {withRouter} from 'react-router-dom';
@@ -24,7 +26,7 @@ function LateralMenu(props){
         if(!projects.length){
             fetchData();
         }
-    });
+    }, []);
 
     return (
         
@@ -45,7 +47,7 @@ function LateralMenu(props){
                 {
                     projects.map(project => {
                     return (
-                        <ProjectItem key={project._id} onClick={()=> navigate(`/project/${project._id}`)}>
+                        <ProjectItem key={project._id} onClick={()=>  { navigate(`/project/${project._id}`); EventEmitter.dispatch('loadProject',project._id) }} >
                             <Title>{project.name}</Title>
                         </ProjectItem>
                     ) ||  <div/>
